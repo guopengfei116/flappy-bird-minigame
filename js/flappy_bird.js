@@ -150,7 +150,7 @@ FlappyBird.prototype = {
         this.overScene = new OverScene({
             ctx: this.ctx,
             title: 'Thank You Very Much',
-            btnText: '不谢，继续'
+            btnText: '请你吃个够'
         });
         this.overScene.on('gameRestart', function() {
             self.restart();
