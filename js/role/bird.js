@@ -26,7 +26,7 @@ function Bird(options) {
 
     // 每秒加速度 & 向上飞行初始速度
     this.a = options.a || util.hasMobile? 140: 240;
-    this.flyupSpeed = options.flyupSpeed || util.hasMobile? -100: -160;
+    this.flyupSpeed = options.flyupSpeed || util.hasMobile? -90: -160;
 }
 
 /*

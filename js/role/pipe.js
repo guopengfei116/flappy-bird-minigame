@@ -29,10 +29,10 @@ function Pipe(options) {
     this.upImg = options.upImg;
     this.downImg = options.downImg;
     this.cushionSpace = options.cushionSpace || util.hasMobile? 150: 300;
-    this.LRSpace = options.LRSpace || util.hasMobile? 75: 150;
+    this.LRSpace = options.LRSpace || util.hasMobile? 65: 150;
     this.TBSpace = options.TBSpace || util.hasMobile? 75: 150;
     this.minHeight = options.minHeight || util.hasMobile? 25: 50;
-    this.maxHeight = options.maxHeight || this.cvs.height / 2;
+    this.maxHeight = options.maxHeight || util.hasMobile? this.cvs.height / 3: this.cvs.height / 2;
 
     // 每秒加速度，每120秒，2分钟速度加一倍
     this.a = options.a || this.speed / 120;

@@ -33,6 +33,9 @@
 <body>
     <section id="flappy-bird"></section>
     <script>
+        window.onorientationchange=function(){
+            location.reload();
+        };
         var flaB = new FlappyBird('#flappy-bird');
         flaB.run();
     </script>
