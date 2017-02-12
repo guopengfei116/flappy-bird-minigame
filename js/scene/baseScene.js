@@ -104,9 +104,9 @@ util.extend(BaseScene.prototype, {
     drawBackground: function() {
         if (this.img) {
             this.ctx.save();
-            this.ctx.drawImage(this.img, 0, 0);
+            this.ctx.drawImage(this.img, 0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
             this.ctx.fillStyle = 'rgba( 100, 100, 100, 0.8 )';
-            this.ctx.fillRect( 0, 0, this.ctx.canvas.width, this.ctx.canvas.height );
+            this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
             this.ctx.restore();
         }
     },
