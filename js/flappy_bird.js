@@ -13,7 +13,7 @@ function FlappyBird(gameContainer) {
 
     // 游戏画面的宽高
     this.width = document.body.clientWidth;
-    this.height = 600;
+    this.height = document.body.scrollHeight || document.body.offsetHeight;
 
     // 画布&绘图上下文
     this.cvs = document.createElement('canvas');
@@ -24,7 +24,7 @@ function FlappyBird(gameContainer) {
 
     // 游戏所需资源
     this.srcObj = {
-        flappyBird: './imgs/flappy_bird.png',
+        flappyBird: './imgs/gpf_happy_birthday.png',
         bird: './imgs/bird.png',
         land: './imgs/land.png',
         pipeDown: './imgs/pipe_down.png',
@@ -120,8 +120,8 @@ FlappyBird.prototype = {
         this.entryScene = new EntryScene({
             ctx: this.ctx,
             img: imgObj.flappyBird,
-            title: 'Flappy Bird',
-            btnText: '开始游戏'
+            title: 'GPF Happy Birthday',
+            btnText: '请他吃饭'
         });
         this.entryScene.on('gameStart', function() {
             self.start();
@@ -149,8 +149,8 @@ FlappyBird.prototype = {
          * */
         this.overScene = new OverScene({
             ctx: this.ctx,
-            title: 'Game Over',
-            btnText: '重新开始'
+            title: 'Thank You Very Much',
+            btnText: '不谢，继续'
         });
         this.overScene.on('gameRestart', function() {
             self.restart();

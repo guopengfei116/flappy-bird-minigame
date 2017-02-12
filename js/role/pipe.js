@@ -28,10 +28,10 @@ function Pipe(options) {
 
     this.upImg = options.upImg;
     this.downImg = options.downImg;
-    this.cushionSpace = options.cushionSpace || 300;
-    this.LRSpace = options.LRSpace || 150;
-    this.TBSpace = options.TBSpace || 150;
-    this.minHeight = options.minHeight || 50;
+    this.cushionSpace = options.cushionSpace || util.hasMobile? 150: 300;
+    this.LRSpace = options.LRSpace || util.hasMobile? 75: 150;
+    this.TBSpace = options.TBSpace || util.hasMobile? 75: 150;
+    this.minHeight = options.minHeight || util.hasMobile? 25: 50;
     this.maxHeight = options.maxHeight || this.cvs.height / 2;
 
     // 每秒加速度，每120秒，2分钟速度加一倍
@@ -80,10 +80,14 @@ util.extend(Pipe.prototype, {
     * 2、绘制管道对应的矩形路径
     * */
     draw: function() {
-        this.ctx.drawImage(this.upImg, this.x, this.upY);
-        this.ctx.drawImage(this.downImg, this.x, this.downY);
-        this.ctx.rect(this.x, this.upY, this.w, this.h);
-        this.ctx.rect(this.x, this.downY, this.w, this.h);
+        this.ctx.drawImage(this.upImg, this.x, this.upY,
+            util.hasMobile? this.w/2: this.w, this.h);
+        this.ctx.drawImage(this.downImg, this.x, this.downY,
+            util.hasMobile? this.w/2: this.w, this.h);
+        this.ctx.rect(this.x, this.upY,
+            util.hasMobile? this.w/2: this.w, this.h);
+        this.ctx.rect(this.x, this.downY,
+            util.hasMobile? this.w/2: this.w, this.h);
     },
 
     // 计算最新的y轴坐标 = 初始速度 * 时间 + 加速度 * 时间^2 / 2

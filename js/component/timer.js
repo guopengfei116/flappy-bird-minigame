@@ -14,7 +14,7 @@
 function Timer(options) {
     Text.call(this, options);
     this.durationTime = options.durationTime || 0;
-    this.text = options.text || '您已坚持0小时0分钟0秒！';
+    this.text = options.text || '您累计请他吃了0小时0分钟0秒！';
     this.x = options.x || this.cvs.width;
     this.y = options.y || 0;
     this.textAlign = options.textAlign || 'right';
@@ -40,6 +40,6 @@ util.extend(Timer.prototype, Text.prototype, {
         var hours = Math.floor( this.durationTime / (60 * 60) );
         var minutes = Math.floor( this.durationTime % (60 * 60) / 60 );
         var seconds = Math.floor( this.durationTime % 60 );
-        this.text = '您已坚持' + hours + '小时' + minutes + '分钟' + seconds + '秒!!!';
+        this.text = '您累计请他吃了' + hours + '小时' + minutes + '分钟' + seconds + '秒!!!';
     }
 });

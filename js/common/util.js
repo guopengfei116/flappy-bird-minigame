@@ -22,5 +22,10 @@ var util = {
         min = min || 0;
         max = max || 1;
         return Math.random() * (max - min) + min;
-    }
+    },
+
+    // 是否移动段
+    hasMobile: function() {
+        return device.mobile();
+    }()
 }

@@ -40,7 +40,7 @@ util.extend(GameScene.prototype, E.prototype, {
             sky: [],
             pipe: [],
             land: [],
-            timer: [],
+            timer: this.roles && this.roles.timer || [],
             bird: []
         };
         var i, len;
@@ -84,10 +84,11 @@ util.extend(GameScene.prototype, E.prototype, {
             );
         }
 
-        // 计时器
-        this.roles.timer.push(
+        // 计时器，之前没有再创建
+        (this.roles.timer.length === 0) && this.roles.timer.push(
             new Timer({
                 ctx: this.ctx,
+                durationTime: localStorage.getItem('gpf_happy_birthday') - 0
             })
         );
 
@@ -106,25 +107,33 @@ util.extend(GameScene.prototype, E.prototype, {
     * */
     isBirdDie: function() {
         var bird = this.roles.bird[0];
-        var landH = this.roles.land[0].h;
+        var birdW = util.hasMobile? bird.w/2: bird.w;
+        var birdH = util.hasMobile? bird.h/2: bird.h;
+        var landH = util.hasMobile? this.roles.land[0].h/2: this.roles.land[0].h;
+        var isDie = false;
 
         // 撞向大地，传播死亡消息
-        if (bird.y > this.cvs.height - landH - bird.h) {
+        if (bird.y > this.cvs.height - landH - birdH) {
             this.trigger('gameOver', {msg: '坠落大地'});
-            return true;
+            isDie = true;
         }
         // 飞出天空，传播死亡消息
         else if (bird.y < 0) {
             this.trigger('gameOver', {msg: '飞向上帝'});
-            return true;
+            isDie = true;
         }
         // 撞向管道，传播死亡消息
-        else if(this.ctx.isPointInPath(bird.x + bird.w / 2, bird.y + bird.h / 2)) {
+        else if(this.ctx.isPointInPath(bird.x + birdW / 2, bird.y + birdH / 2)) {
             this.trigger('gameOver', {msg: '撞击管道'});
-            return true;
+            isDie = true;
         }
 
-        return false;
+        // 如果小鸟死亡，记录累计时间
+        if(isDie) {
+            localStorage.setItem('gpf_happy_birthday', this.roles.timer[0].durationTime);
+        }
+
+        return isDie;
     },
 
     /*

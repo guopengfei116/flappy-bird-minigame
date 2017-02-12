@@ -10,7 +10,7 @@
 function Land(options) {
     BaseSprite.call(this, options);
     this.x = this.w * Land.total;
-    this.y = this.cvs.height - this.h;
+    this.y = this.cvs.height - (util.hasMobile? this.h/2: this.h);
     Land.total++;
 }
 
@@ -34,7 +34,8 @@ util.extend(Land, {
 util.extend(Land.prototype, {
 
     draw: function() {
-        this.ctx.drawImage(this.img, this.x, this.y);
+        this.ctx.drawImage(this.img, this.x, this.y,
+            this.w, util.hasMobile? this.h/2: this.h);
     },
 
     /*

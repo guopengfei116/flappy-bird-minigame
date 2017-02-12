@@ -25,8 +25,8 @@ function Bird(options) {
     this.minRotateRadian = options.minRotateRadian || -Math.PI / 4;
 
     // 每秒加速度 & 向上飞行初始速度
-    this.a = options.a || 240;
-    this.flyupSpeed = options.flyupSpeed || -160;
+    this.a = options.a || util.hasMobile? 140: 240;
+    this.flyupSpeed = options.flyupSpeed || util.hasMobile? -100: -160;
 }
 
 /*
@@ -61,7 +61,8 @@ util.extend(Bird.prototype, {
         this.ctx.rotate(rotateRadian);
         this.ctx.drawImage(this.img,
             this.w * this.currentFrame, 0, this.w, this.h,
-            -this.w/2, -this.h/2, this.w, this.h);
+            util.hasMobile? -this.w/4: -this.w/2, util.hasMobile? -this.h/4: -this.h/2,
+            util.hasMobile? this.w/2: this.w, util.hasMobile? this.h/2: this.h);
         this.ctx.restore();
     },
 
@@ -72,7 +73,10 @@ util.extend(Bird.prototype, {
         this.speed = this.speed + this.a * delay;
 
         // 刷新帧
-        this.currentFrame = ++this.currentFrame % this.widthFrame;
+        this.avatarTotal = ++this.avatarTotal || 1;
+        if (this.avatarTotal % 16 === 0) {
+            this.currentFrame = ++this.currentFrame % this.widthFrame;
+        }
     },
 
     // 小鸟上飞
