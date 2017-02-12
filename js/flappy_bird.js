@@ -12,7 +12,7 @@ function FlappyBird(gameContainer) {
     this.gameContainer = document.querySelector(gameContainer);
 
     // 游戏画面的宽高
-    this.width = 800;
+    this.width = document.body.clientWidth;
     this.height = 600;
 
     // 画布&绘图上下文
