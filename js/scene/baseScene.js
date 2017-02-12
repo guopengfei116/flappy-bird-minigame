@@ -22,13 +22,13 @@ function BaseScene(options) {
     this.cvs = this.ctx.canvas;
     this.img = options.img;
     this.title = options.title || 'Title';
-    this.titleFont = options.titleFont || '900 30px 微软雅黑';
+    this.titleFont = options.titleFont || (util.hasMobile? '900 15px 微软雅黑': '900 30px 微软雅黑');
     this.titleColor = options.titleColor || 'red';
 
-    this.btnW= options.btnW || 400;
-    this.btnH = options.btnH || 100;
+    this.btnW= options.btnW || util.hasMobile? 200: 400;
+    this.btnH = options.btnH || util.hasMobile? 50: 100;
     this.btnText = options.btnText || 'button';
-    this.btnFont = options.btnFont || '900 40px 微软雅黑';
+    this.btnFont = options.btnFont || (util.hasMobile? '900 20px 微软雅黑': '900 40px 微软雅黑');
     this.btnTextColor = options.btnTextColor || 'gold';
     this.btnBorderColor = options.btnBorderColor || 'gold';
 
@@ -58,7 +58,7 @@ util.extend(BaseScene.prototype, {
 
         // 标题绘制在按钮上面
         this.titleX = centerX;
-        this.titleY = this.btnY - 50;
+        this.titleY = this.btnY - (util.hasMobile? 25: 50);
     },
 
     /*

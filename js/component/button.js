@@ -29,7 +29,7 @@ function Button(options) {
     this.borderColor = options.borderColor || 'purple';
 
     this.text = options.text || '按钮';
-    this.font = options.font || '400 20px 微软雅黑';
+    this.font = options.font || (util.hasMobile? '400 10px 微软雅黑': '400 20px 微软雅黑');
     this.textAlign = options.textAlign || 'center';
     this.textBaseline = options.textBaseline || 'middle';
     this.textColor = options.textColor || 'purple';

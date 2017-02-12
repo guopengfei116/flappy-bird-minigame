@@ -16,7 +16,7 @@ function Text(options) {
     this.text = options.text;
     this.x = options.x || 0;
     this.y = options.y || 0;
-    this.font = options.font || '24px 微软雅黑';
+    this.font = options.font || (util.hasMobile? '12px 微软雅黑': '24px 微软雅黑');
     this.textAlign = options.textAlign || 'center';
     this.textBaseline = options.textBaseline || 'middle';
     this.color = options.color || 'deeppink';
